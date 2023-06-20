@@ -48,7 +48,7 @@ func (h *Handlers) PostBodyHandler(res http.ResponseWriter, req *http.Request) {
 func (h *Handlers) GetBodyHandler(res http.ResponseWriter, req *http.Request) {
 	shortenedLink := chi.URLParam(req, "shortenLink")
 
-	val, ok := h.Storage.Storage[shortenedLink]
+	_, ok := h.Storage.Storage[shortenedLink]
 	if !ok {
 		res.WriteHeader(400)
 	}
