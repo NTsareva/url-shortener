@@ -54,6 +54,8 @@ func (h *Handlers) GetBodyHandler(res http.ResponseWriter, req *http.Request) {
 	if !ok {
 		res.WriteHeader(400)
 	}
+
+	res.Header().Set("Content-Type", "text/plain")
 	res.Header().Set("Location", val)
 	res.WriteHeader(307)
 }
