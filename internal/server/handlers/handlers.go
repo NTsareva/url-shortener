@@ -16,11 +16,15 @@ const letterBytes = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
 type Handlers struct {
 	Chi     chi.Router
 	Storage storage.Storage
+	Client  *http.Client
 }
 
 func (h *Handlers) New() {
 	h.Chi = chi.NewRouter()
 	h.Storage.New()
+	h.Client = &http.Client{CheckRedirect: func(req *http.Request, via []*http.Request) error {
+		return http.ErrUseLastResponse
+	}}
 }
 
 func (h *Handlers) PostBodyHandler(res http.ResponseWriter, req *http.Request) {
@@ -49,6 +53,7 @@ func (h *Handlers) GetBodyHandler(res http.ResponseWriter, req *http.Request) {
 	shortenedLink := chi.URLParam(req, "shortenLink")
 
 	//res.Header().Set("Content-Type", "text/plain")
+	//req, err := http.NewRequest(http.MethodGet,)
 
 	val, ok := h.Storage.Storage[shortenedLink]
 	if !ok {
