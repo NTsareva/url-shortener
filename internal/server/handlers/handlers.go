@@ -52,9 +52,8 @@ func (h *Handlers) GetBodyHandler(res http.ResponseWriter, req *http.Request) {
 	if !ok {
 		res.WriteHeader(400)
 	}
+	res.Header().Set("Location", link)
 	res.WriteHeader(307)
-	res.Write([]byte(link))
-	res.Write([]byte("wowo"))
 
 }
 
