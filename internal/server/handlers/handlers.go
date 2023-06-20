@@ -54,8 +54,8 @@ func (h *Handlers) GetBodyHandler(res http.ResponseWriter, req *http.Request) {
 	}
 
 	res.Header().Set("Content-Type", "text/plain")
-	res.Header().Set("Location", val)
-	res.WriteHeader(201)
+	//res.Header().Set("Location", val)
+	res.WriteHeader(307)
 }
 
 func randStringBytes(n int) string {
