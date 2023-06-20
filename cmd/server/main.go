@@ -3,9 +3,10 @@ package main
 import (
 	"net/http"
 
-	"github.com/go-chi/chi/cmd/storage"
-	"github.com/go-chi/chi/internal/server/handlers"
 	"github.com/go-chi/chi/v5"
+
+	"github.com/NTsareva/url-shortener.git/cmd/storage"
+	"github.com/NTsareva/url-shortener.git/internal/server/handlers"
 )
 
 var linksStorage storage.Storage
@@ -23,5 +24,7 @@ func ShortenerRouter() chi.Router {
 }
 
 func main() {
+
 	http.ListenAndServe(":8080", ShortenerRouter())
+
 }
