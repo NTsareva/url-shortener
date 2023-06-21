@@ -33,11 +33,11 @@ func (h *Handlers) PostBodyHandler(res http.ResponseWriter, req *http.Request) {
 
 	res.Header().Set("Content-Type", "text/plain")
 
-	if len(reqBody) == 0 {
-		res.WriteHeader(400)
-
-		return
-	}
+	//if len(reqBody) == 0 {
+	//	res.WriteHeader(400)
+	//
+	//	return
+	//}
 
 	shortenedLink := randStringBytes(8)
 	res.WriteHeader(201)
