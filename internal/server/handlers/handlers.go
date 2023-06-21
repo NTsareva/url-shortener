@@ -35,6 +35,8 @@ func (h *Handlers) PostBodyHandler(res http.ResponseWriter, req *http.Request) {
 
 	if len(reqBody) == 0 {
 		res.WriteHeader(400)
+
+		return
 	}
 
 	shortenedLink := randStringBytes(8)
@@ -48,13 +50,13 @@ func (h *Handlers) PostBodyHandler(res http.ResponseWriter, req *http.Request) {
 func (h *Handlers) GetBodyHandler(res http.ResponseWriter, req *http.Request) {
 	shortenedLink := chi.URLParam(req, "shortenLink")
 
-	_, ok := h.Storage.Storage[shortenedLink]
+	val, ok := h.Storage.Storage[shortenedLink]
 	if !ok {
 		res.WriteHeader(400)
 	}
 
 	res.Header().Set("Content-Type", "text/plain")
-	//res.Header().Set("Location", val)
+	res.Header().Set("Location", val)
 	res.WriteHeader(307)
 }
 
